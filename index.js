@@ -6,6 +6,7 @@ const prompt = require('co-prompt');
 const GitHubApi = require('github');
 const csv = require('csv');
 const fs = require('fs');
+const async = require('async');
 
 program
     .version('0.1.0')
@@ -14,9 +15,9 @@ program
     .action(function(file) {
         co(function*() {
             var retObject = {};
-            retObject.token = yield prompt('token (get from https://github.com/settings/tokens): ');
-            retObject.userOrOrganization = yield prompt('user or organization: ');
-            retObject.repo = yield prompt('repo: ');
+            retObject.token = "deb464ed4c15f271ae1ef7bc11912ca455d69c47";//yield prompt('token (get from https://github.com/settings/tokens): ');
+            retObject.userOrOrganization = "AccessiDys";//yield prompt('user or organization: ');
+            retObject.repo = "AccessiDys";//yield prompt('repo: ');
             return retObject;
         }).then(function(values) {
             var github = new GitHubApi({
@@ -53,12 +54,13 @@ program
                     var titleIndex = cols.indexOf('title');
                     var bodyIndex = cols.indexOf('description');
                     var labelsIndex = cols.indexOf('labels');
+                    var stateIndex = cols.indexOf('state');
 
                     if (titleIndex === -1) {
                         console.error('Title required by GitHub, but not found in CSV.');
                         process.exit(1);
                     }
-                    csvRows.forEach((row) => {
+                    async.eachLimit(csvRows, 1, (row, callback) => {
                         var sendObj = {
                             user: values.userOrOrganization,
                             repo: values.repo,
@@ -72,13 +74,31 @@ program
 
                         // if we have a labels column, pass that.
                         if (labelsIndex > -1) {
-                            sendObj.labels = row[labelsIndex].split(',');
+                          var labels = row[labelsIndex];
+                            if(labels.lastIndexOf('/') == labels.length -1){
+                              labels = labels.substr(0,labels.length -1);
+                            }
+                            sendObj.labels = labels.split('/');
                         }
 
                         github.issues.create(sendObj, function(err, res)
                         {
+                          if(row[stateIndex] == "Terminé"){
+                            let closedIssue = {
+                              user: values.userOrOrganization,
+                              repo: values.repo,
+                              state : "closed",
+                              number : res.number
+                            }
+                            github.issues.edit(closedIssue, function(err, res){
+                                setTimeout(callback,3000);
+                            })
+                          } else {
+                            setTimeout(callback,3000);
+                          }
+
                             // debugging: console.log(JSON.stringify(res));
-                            process.exit(0);
+                            //process.exit(0);
                         });
                     });
                 });

@@ -1,0 +1,1102 @@
+title,Issue key,Issue id,Parent id,Type de demande,Etat,Project description,Project url,Priorité,Résolution,Responsable,Rapporteur,Créateur,Création,Mise à jour,Dernier affichage,Résolue,Affecte la/les version(s),Version(s) cible(s),Version(s) cible(s),Date d'échéance,Votes,Étiquettes,Descriptif,Environnement,Gérer les observateurs,Gérer les observateurs,Gérer les observateurs,Gérer les observateurs,Gérer les observateurs,Journal de travail,Journal de travail,Journal de travail,Journal de travail,Journal de travail,Journal de travail,Journal de travail,Estimation originale,Estimation restante,Temps consacré,Ratio du travail réel comparé à l'estimation,Σ Estimation originale,Σ Estimation restante,Σ Temps consacré,Niveau de sécurité,Outward issue link (Blocks),Outward issue link (Duplicate),Outward issue link (Relates),Pièce jointe,Pièce jointe,Pièce jointe,Pièce jointe,Custom field (Account),Custom field (Business Value),Custom field (Epic Color),Custom field (Epic Link),Custom field (Epic Name),Custom field (Epic Status),Custom field (Flagged),Custom field (Iteration),Custom field (Parent Link),Custom field (Raised During),Custom field (Rank),Sprint,Sprint,Custom field (Story Points),Custom field (Team),Custom field (Team),Custom field (Test Sessions),Custom field (Testing Status),Custom field ([CHART] Date of First Response),Commentaire,Commentaire,Commentaire,Commentaire,Commentaire,Commentaire,Commentaire,Commentaire,Commentaire,Commentaire,Commentaire,Commentaire,Commentaire
+message d’erreur SSL,CNED-542,17801,,Bogue,A faire,,,Majeur,,admin,CnedAdapt,CnedAdapt,19/oct./16 10:36 AM,19/oct./16 10:36 AM,07/nov./16 1:13 PM,,,,,,0,," Contexte : je tape accessidys.com comme adresse
+·         Ce à quoi je m’attends : être redirigé vers accessidys.org et voir s’afficher l’écran d’accueil
+·         Ce que j’observe : une erreur SSL car accessidys.com se charge en httpS avec le certificat de accessidys.org
+
+
+
+ ",prod,CnedAdapt,,,,,,,,,,,,,,,,,,,,,,,19/oct./16 10:35 AM,CnedAdapt,image001 (1).jpg,https://cnedadapt.atlassian.net/secure/attachment/14300/image001+%281%29.jpg,,,,,,,,,,,,,,0|i006pb:,,,,,,,Not started,,,,,,,,,,,
+Impossible de se connecter à AccessiDys,CNED-541,17800,,MCO,Validé,,,Bloquant,Terminé,admin,CnedAdapt,CnedAdapt,18/oct./16 2:50 PM,21/oct./16 11:53 AM,31/oct./16 5:53 PM,18/oct./16 4:42 PM,,,,,0,,"Contexte : j'ai ouvert AccessiDys à partir de htpps:/recette.accessidys.com, j'ai saisis l'email et mot de passe puis j'ai cliqué sur ""se connecter"".
+
+Ce que j'attends : accéder au menu de l'application
+
+Ce que j'observe : Affichage du message ""Votre session a expiré, veuillez vous reconnecter.""
+",Recette,CnedAdapt,guillaume.ogier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006p3:,,,,,,,Not started,2016-10-18 16:42:26.506,"18/oct./16 4:42 PM;guillaume.ogier;Bonjour,
+
+Comme vu par téléphone, il s’agissait d’une expiration du compte.
+L’expiration a été levée.
+Le compte est de nouveau accessible.
+
+La levée a été réalisée sur la base de données avec la commande suivante :
+db.getCollection('users').update({'local.email':'env.recette@gmail.com'}, { $set :{""local.tokenTime"":null}})
+
+",19/oct./16 4:26 PM,CnedAdapt,Le problème a été réglé hier mais il est de retour à nouveau.,"21/oct./16 11:53 AM;guillaume.ogier;Il s'agit d'un problème temporaire et spécifique à l'environnement de test. => non reproduit sur d'autres environnement.
+En cas de reproduction, merci de nous fournir l'accès à l'environnement pour analyse.",,,,,,,,
+AccessiDys env de recette en panne,CNED-540,17700,,MCO,Validé,,,Bloquant,,admin,CnedAdapt,CnedAdapt,13/oct./16 3:34 PM,21/oct./16 11:52 AM,07/nov./16 1:13 PM,,,,,,0,,"J'ai vidé le cache du navigateur. Depuis, je ne peux plus accéder AccessiDys en environnement de recette.
+Que se passe-t-il ?
+",Recette,CnedAdapt,guillaume.ogier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006ov:,,,,,,,Not started,2016-10-21 11:52:13.011,"21/oct./16 11:52 AM;guillaume.ogier;Comme indiqué par mail, il s'agit d'une saturation de l'espace disque sur la machine dû à  un niveau de log important.
+Le disque a été nettoyé et le niveau de log reduit.",,,,,,,,,,,,
+Remplacer  l’API Dropbox v.1 qui va expirer en juin 2017,CNED-539,17602,,Amélioration,A faire,,,Majeur,,admin,CnedAdapt,CnedAdapt,26/sept./16 3:40 PM,26/sept./16 3:40 PM,31/oct./16 5:52 PM,,,,,,0,,"remplacement de l’API Dropbox v.1 par la V2 ou une autre API de cloud privé.
+Nb : Etude de faisabilité avant toute action",,CnedAdapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006on:,,,,,,,Not started,,,,,,,,,,,,,,
+Architecture applicative avec Dropbox,CNED-538,17601,,Amélioration,A faire,,,Majeur,,admin,CnedAdapt,CnedAdapt,26/sept./16 3:34 PM,10/oct./16 10:21 AM,20/oct./16 5:39 PM,,,,,,0,," Nous avons besoin de ne pas montrer d’URL Accessidys/CNED pour chaque document mais de montrer plutôt des URL de clouds, pour diminuer les probabilités d’attaque juridique par des ayants droits,
+
+-          Les docs sur Dropbox seraient remis avec un HTML complet (tags d’entêtes, etc.) et inclueraient un script de redirection équivalent à un clic sur la bookmarklet
+-          Lors de l’affichage d’un document par AccessiDys, si le doc vient de Dropbox, alors l’URL dans la barre d’adresse est ré-écrite par un code JS faisant appel à l’API HTML5 qui est faite pour cela (cela se fait sans rafraîchissement du document)",,CnedAdapt,guillaume.ogier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006of:,,,,,,,Not started,2016-10-10 10:21:42.496,10/oct./16 10:21 AM,guillaume.ogier,Liée à la CNED-525.,,,,,,,,,,
+supprimer les comptes accessidys,CNED-537,17600,,Amélioration,A faire,,,Majeur,,admin,CnedAdapt,CnedAdapt,26/sept./16 12:37 PM,10/oct./16 10:52 AM,07/nov./16 1:14 PM,,,,,,0,,"   Le problème : l’inscription sur Accessidys est peu utilisable car il faut créer un compte accessidys et se lier à un compte dropbox (ou autre) voire le créer, ce qui est compliqué.
+·         La solution :
+o   Supprimer la notion de compte AccessiDys pour ne conserver que les comptes Dropbox (ou autre fournisseur cloud), ne stocker aucune donnée utilisateur sur les serveurs accessidys
+o   Ne rendre l’authentification cloud (dropbox) nécessaire qu’au moment où l’utilisateur veut « sauvegarder » son profil et ses documents
+o   Si jamais l’utilisateur clique sur partager (ou déléguer) ses profils ou ses documents, alors lui indiquer qu’il doit d’abord les « sauvegarder » pour pouvoir faire cela.
+o   Tant que les profils et documents ne sont pas sauvegardés, alerter visuellement l’utilisateur sur le fait que les documents ne sont pas sauvegardés
+
+Tant que les profils et documents ne sont pas « sauvegardés », ils sont tout de même « enregistrés » dans le cache du navigateur et donc modifiables.
+
+Ainsi l’appli est 100% utilisable, sauf partage et délégation, sans compte utilisateur d’aucune sorte. Tout reste stocké dans le navigateur de l’utilisateur. Et ce n’est qu’au moment où l’utilisateur comprend qu’il a besoin de sauvegarder ses données qu’une authentification a lieu, et uniquement l’authentification nécessaire, c’est-à-dire celle sur un fournisseur de cloud privé.",,CnedAdapt,guillaume.ogier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006o7:,,,,,,,Not started,2016-10-10 10:52:49.498,"10/oct./16 10:52 AM;guillaume.ogier;La suppression d'un ""Compte"" côté Accessidys est impossible car toute la gestion des profils/Tags est totalement liée à l'utilisateur. Dropbox n'a pas le rôle de base de données mais de gestionnaire de document. Par conséquent, il ne peut et ne doit gérer les données applicatives de la solution.",,,,,,,,,,,,
+Faille de sécurité sur AccessiDys,CNED-536,17500,,MCO,A faire,,,Majeur,,admin,CnedAdapt,CnedAdapt,19/sept./16 9:06 AM,04/oct./16 11:58 AM,07/nov./16 1:14 PM,,C7,,,,0,,"X-Account-Key:	account26
+X-UIDL:	UID91596-1167946620
+X-Mozilla-Status:	0001
+X-Mozilla-Status2:	00000000
+X-Mozilla-Keys:
+X-Spam-Checker-Version:	SpamAssassin 3.4.0 (2014-02-07) on village005.cyberbrain.net
+X-Spam-Level:
+X-Spam-Status:	No, score=0.7 required=5.0 tests=HTML_IMAGE_ONLY_24, HTML_MESSAGE,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL, RP_MATCHES_RCVD,SPF_PASS,T_DKIM_INVALID,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Delivered-To:	sig@akasig.org
+Return-Path:	<bounces+848413-39db-sig=akasig.org@sgmail.github.com>
+Received:	from o8.sgmail.github.com (o8.sgmail.github.com [::ffff:167.89.101.199]) (TLS: TLSv1/SSLv3,128bits,DHE-RSA-AES128-GCM-SHA256) by village005.cyberbrain.net with ESMTPS; Sun, 18 Sep 2016 20:27:51 +0200 id 0000000000041DD2.0000000057DEDCA7.00000AB7
+DKIM-Signature:	v=1; a=rsa-sha1; c=relaxed; d=github.com; h=from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding:list-id:list-archive:list-post:list-unsubscribe; s=s20150108; bh=AykPmyw39zkIUeyUif0eNltA9GY=; b=RgnlnIOgyitEvPSg DmYkaIHerl0HBVCeaybrZdfz64FctRFjKGb35YCFOJR19oamVYFYxR9CFGiFLMrO kezB+xSIPfQ5VUUVBD9q7HgHLD1ewqxiXBIfmDMI3hXHEuqdaRwI11LkhHi6VeEQ 0owTtqwNaY+gQb+SIc9phzH9/OQ=
+Received:	by filter0496p1mdw1.sendgrid.net with SMTP id filter0496p1mdw1.29042.57DEDC6F17 2016-09-18 18:26:55.311037225 +0000 UTC
+Received:	from github-smtp2a-ext-cp1-prd.iad.github.net (github-smtp2a-ext-cp1-prd.iad.github.net [192.30.253.16]) by ismtpd0004p1iad1.sendgrid.net (SG) with ESMTP id FY_tUD1nTTSQ5l4wOYiYQg for <sig@akasig.org>; Sun, 18 Sep 2016 18:26:55.118 +0000 (UTC)
+Date:	Sun, 18 Sep 2016 11:26:54 -0700
+From:	ryarnyah <notifications@github.com>
+Reply-To:	cnedDI/AccessiDys <reply+000a2e745441d709ac30427616635f68b8fae9718d4d617692cf0000000113f69e6e92a169ce0a96fe94@reply.github.com>
+To:	cnedDI/AccessiDys <AccessiDys@noreply.github.com>
+Message-ID:	<cnedDI/AccessiDys/issues/4@github.com>
+Subject:	[cnedDI/AccessiDys] [Security] Command injection vulnerability on /textToSpeech (#4)
+Mime-Version:	1.0
+Content-Type:	multipart/alternative; boundary=""--==_mimepart_57dedc6ef2ed6_cc893f87d1e432a02431b9""; charset=UTF-8
+Content-Transfer-Encoding:	7bit
+Precedence:	list
+X-GitHub-Sender:	ryarnyah
+X-GitHub-Recipient:	Siggg
+List-ID:	cnedDI/AccessiDys <AccessiDys.cnedDI.github.com>
+List-Archive:	https://github.com/cnedDI/AccessiDys
+List-Post:	<mailto:reply+000a2e745441d709ac30427616635f68b8fae9718d4d617692cf0000000113f69e6e92a169ce0a96fe94@reply.github.com>
+List-Unsubscribe:	<mailto:unsub+000a2e745441d709ac30427616635f68b8fae9718d4d617692cf0000000113f69e6e92a169ce0a96fe94@reply.github.com>, <https://github.com/notifications/unsubscribe/AAoudLzEwVpzlAk_HbqaxmG7MMDEbUL4ks5qrYJugaJpZM4J_-SK>
+X-Auto-Response-Suppress:	All
+X-GitHub-Recipient-Address:	sig@akasig.org
+X-SG-EID:	5osButQ5l4D9hANa8wiH8DkEc6fSz82WlNOlpuNgQuwoXjtXfg9c4DY/lSNvHKT+t8xAeir67JRSpn 49DgbgkcdSAlX7SHu7mlsaNV2dHpNRXclC3dQ7S33V8dXC8rcnnxAN5AEHDToOF+60C5SuUretzf3+ B5vemEouektRg9mti7B+z/S0+f3hvSVMHC3uFOoWYGX9uzsn0fZ/n7ZKEw==
+
+
+An logged user can execute any command on server (https://www.owasp.org/index.php/Command_Injection).
+Example: Imagine you have a user who has a local.token equal to ""XXXXXXXXX"" (can get it from /login)
+You can actually execute any command like that:
+curl -X POST ""[http://]http://<server>/textToSpeech"" --data 'id=XXXXXXXXX&text="";<command to execute>; #'",production,CnedAdapt,guillaume.ogier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006nz:,,,,,,,Not started,2016-10-04 11:57:49.559,"04/oct./16 11:57 AM;guillaume.ogier;L'accès aux fonctionnalités de la partie ""Back"" (accès base de données ou traitement spécifique) doivent être restreintes aux utilisateurs connectés.
+",,,,,,,,,,,,
+bug paramètres du profil ordinaire,CNED-535,17400,,MCO,Annulé,,,Majeur,,admin,rkouifi,rkouifi,07/sept./16 10:56 AM,21/oct./16 11:51 AM,07/nov./16 1:14 PM,,C7,,,,0,,"Le contexte : j’observe du profil ordinaire
+
+Ce à quoi je m’attends :
+o   Titre 1 : des lettres moins espacées
+o   Tous styles : la même police pour tous les styles, et une police qui soit le plus proche possible de la police par défaut de Firefox, Chrome, Safari ou IE (une police « ordinaire » pas une comic sans ms…)
+o   Paragraphe : une taille de police et d’interligne correspondant à la taille par défaut d’un navigateur
+o   Liste de niveau 1 : proche du style paragraphe
+
+Ce que j’observe :
+o   Titre 1 : trop d’espaces entre lettres
+o   Tous styles : police qui varie, et police similaire à comic sans ms ou opendyslexic
+o   Paragraphe : la taille m’a l’air petite
+o   Liste : trop gros
+o   le titre 3 est trop proche du paragraphe (pas assez gros ?) et le titre 4 est plus visible que le titre 3",Recette/prod,guillaume.ogier,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006nr:,,,,,,,Not started,2016-10-10 10:23:39.036,10/oct./16 10:23 AM,guillaume.ogier,Mail du 05/10/206 de Rachid Kouifi : Paramétrage à faire par le Cned. Rien à faire côté Capgemini.,,,,,,,,,,
+ issue : voix désactivable,CNED-534,17304,,MCO,A faire,,,Majeur,,admin,rkouifi,rkouifi,02/sept./16 3:21 PM,02/sept./16 3:21 PM,07/nov./16 1:14 PM,,,C7,,,0,,"·         Ce que l’on veut : côté admin, l’option synthèse vocale doit être supprimée ; la synthèse vocale côté serveur doit être supprimée ; côté client, elle doit pouvoir être activée ou désactivée dans le profil utilisateur ; elle est activée par défaut.
+
+NB : A contacter le Cned avant toute action",,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006nj:,,,,,,,Not started,,,,,,,,,,,,,,
+ amélioration de l'utilisabilité : revue des messages,CNED-533,17303,,MCO,A faire,,,Majeur,,admin,rkouifi,rkouifi,02/sept./16 3:19 PM,02/sept./16 3:19 PM,31/oct./16 5:54 PM,,,C7,,,0,,"·         Contexte : je suis utilisateur, des messages s'affichent pour diverses raisons
+·         Ce à quoi je m’attends : les messages de l’application sont écrits en français clair et simple et compréhensible par le commun des mortels
+·         Ce que je constate : certains messages sont ambigus (cf. audits d’utilisabilité)",,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006nb:,,,,,,,Not started,,,,,,,,,,,,,,
+code en anglais,CNED-532,17302,,Bogue,A faire,,,Majeur,,admin,rkouifi,rkouifi,02/sept./16 3:16 PM,05/sept./16 4:06 PM,31/oct./16 5:48 PM,,C7,,,,0,,"·         Contexte : je suis développeur anglophone et je veux corriger un bug dans le code. J’ouvre le code
+·         Ce à quoi je m’attends : les noms des variables, fonctions, etc. sont en anglais et non en français (et respectent les conventions de style Javascript, cf JSLINT)
+·         Ce que je constate : de nombreux noms sont en français
+ ",,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006n3:,,,,,,,Not started,,"02/sept./16 3:16 PM;rkouifi;Réponse de David heider de Capgemini par email du 23 Août  :
+Par rapport au point CODE_001 ; nous avons compté au moins 70 noms de variable utilisant des termes en français et au moins 130 déclarations de variables utilisant des termes en français (par exemples : « profil », « libelle », « nom », « apercu »). Nous avons comptabilisé que certaines variables comme ""profil""  apparait plus de  250x dans le code, ""libelle"" apparait plus de  150x , ""nom"" apparait plus de 150x, ""apercu"" apparait plus de  115x.
+Modifier massivement ces variables (au regard du nombre) présente un risque très fort de régression sur l’ensemble de l’application. Notre position est de ne pas « traduire » ces variables car le risque d’erreur ainsi que le coût de cette opération sont trop importants.​",05/sept./16 4:06 PM,rkouifi,Il faudrait mettre ce bug en suspend tant qu’on n’a pas au moins plusieurs tests fonctionnels automatisés. Et on réexaminera alors si ces tests nous dotent d’une sécurité suffisante pour pouvoir faire ces opérations de remplacement.,,,,,,,,,
+Adaptation de page adaptée,CNED-531,17301,,Bogue,A faire,,,Majeur,,admin,rkouifi,rkouifi,02/sept./16 3:12 PM,10/oct./16 10:31 AM,31/oct./16 5:49 PM,,C7,,,,0,,"·         Contexte : je suis authentifié et j’affiche un document qui est donc adapté selon mon profil, je clique sur la bookmarlet
+·         Ce à quoi je m’attends : je m’attends à ce que la page se recharge à l’identique : même document, même URL, même authentification et profil
+·         Ce que je constate : il se passe des trucs bizarres
+
+Remarque, de même :
+·         Contexte : je suis authentifié et j’ajoute, via l’éditeur, un lien hypertexte vers un autre document Accessidys (par exemple un lien que j’ai reçu en partage), puis j’enregistre mon document et je l’affiche en mode adapté. Je vois le lien cliquable, je clique dessus.
+·         Ce à quoi je m’attends : je m’attends à rester sur mon serveur Accessidys, avec mon authentification et mon profil actuel, et à voir cet autre document Accessidys en mode adapté
+·         Ce que je constate : pour l’instant, rien, mais vérifier qu’il ne se passe rien d’autre
+",,guillaume.ogier,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006mv:,,,,,,,Not started,2016-10-10 10:31:14.816,"10/oct./16 10:31 AM;guillaume.ogier;Le fonctionnement nominal est d'adapter la page sur laquelle se trouve l'utilisateur. Dans ce cas précis, il s'agit d'adapter le site accessidys.
+Le site étant dans un mode d'adaptation dynamique, l'adaptation de celui est par conséquent léger et n'affiche pas beaucoup de texte.
+Il est normal de ne pas avoir le même résultat que la page précédente, car avant c'était l'adaptation d'un document, ici, c'est l'adaptation du site Accessidys. Ce n'est donc pas le même résultat.
+",,,,,,,,,,,,
+gestion automatisée de configuration,CNED-530,17300,,MCO,A faire,,,Majeur,,admin,rkouifi,rkouifi,02/sept./16 3:11 PM,10/oct./16 10:39 AM,07/nov./16 1:14 PM,,,C7,,,0,,"·         Contexte : je veux installer une configuration Accessidys multi-serveurs (avec répartition de charge). J’ai plusieurs serveurs linux dont je suis administrateur, avec un accès SSH sur chaque serveur. J’ouvre la documentation d’installation.
+·         Ce à quoi je m’attends : je m’attends à n’avoir à modifier qu’un seul fichier ou ensemble de fichiers de paramètres pour spécifier la configuration que je vais utiliser (nom des serveurs, etc.) et, ensuite à n’avoir qu’une seule ligne de commande à saisir pour installer tous les serveurs d’un seul coup
+·         Ce que je constate : j’ai un document qui m’explique pas à pas comment installer un serveur.",,guillaume.ogier,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006mn:,,,,,,,Not started,2016-10-10 10:39:01.531,10/oct./16 10:39 AM,guillaume.ogier,L'architecture mise en place (basée sur mean.io) assure la scalabilité mais l'automatisation de l'installation de cette scalabilité n'était pas une exigence du CNED.,,,,,,,,,,
+Consultation de document : le mode page ne doit pas être accessible si 1 seule page dans le doc,CNED-529,17213,,MCO,A faire,,,Majeur,,admin,rkouifi,rkouifi,29/juil./16 2:34 PM,29/juil./16 3:58 PM,07/nov./16 1:14 PM,,,C7,,,0,,"Consultation de document :
+le mode page ne doit être accessible (désactivé) que si 1 le document contient plus  d'une page.",,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006mf:,,,,,,,Not started,,,,,,,,,,,,,,
+Document adapté : Chargement trop long,CNED-528,17212,,Bogue,A faire,,,Bloquant,,admin,rkouifi,rkouifi,29/juil./16 2:31 PM,29/juil./16 3:55 PM,06/oct./16 9:32 AM,,,C7,,,0,,"NB : Bug de performance
+Après analyse, merci de nous proposer une ou plusieurs solutions répondant au critère suivant : Le délai d'attente de l'utilisateur pour afficher un document ne doit pas dépasser 3 secondes.
+Périmètre : Document dans l'Éditeur de textes  et Consultation de document (Aperçu, affichage, via bookmarlet ou via le lien partagé)
+Piste de solutions : Mettre un mode de chargement progressif avec affichage des premières lignes visibles puis affichage des autres lignes en fonction du position du curseur ou scoll.
+Alerte : Dans l'éditeur de textes, tenir compte du fait que l'utilisateur pourrait modifier le document ==> Quid en cas d'enregistrement (délai d'attente, garantie d'enregistre tout le document, ..).
+En fonction de votre analyse, nous validerons sa mise en place.",recette/prod,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006m7:,,,,,,,Not started,,,,,,,,,,,,,,
+affichage de page de taille volumineuse : page blanche pas de message d'attente,CNED-527,17211,,Bogue,A faire,,,Majeur,,admin,rkouifi,rkouifi,29/juil./16 2:20 PM,29/juil./16 3:46 PM,07/nov./16 1:14 PM,,,C7,,,0,,"Contexte : avec le compte ""direction-innovation@cned.f"", je consulte l'aperçu du document de Mme Bovary.
+Ce que j'observe : page blanche (ou souris figée)
+Ce que j'attends : Affichage du message d'attente puis celui du document adapté en fonction du profil actuel.",Recette/ Production,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006lz:,,,,,,,Not started,,,,,,,,,,,,,,
+changer le favicon d'AccessiDys,CNED-526,17210,,MCO,A faire,,,Mineur,,admin,rkouifi,rkouifi,29/juil./16 2:16 PM,04/oct./16 8:15 AM,07/nov./16 1:14 PM,,,C7,,,0,,Remplacer le favicon actuel par le favicon (logo AccessiDys).,Recette/prod,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006lr:,,,,,,,Not started,,,,,,,,,,,,,,
+url de document ne doit pas faire appel à AccessiDys,CNED-525,17209,,Bogue,A faire,,,Majeur,,admin,rkouifi,rkouifi,29/juil./16 2:13 PM,29/juil./16 2:13 PM,07/nov./16 1:14 PM,,,C7,,,0,,,"Regression- le doc dropbox doit contenir accessiDys : url dropbox doit envoyer vers accessidys, donc pas d'appel à accessidys dans l'url.",rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006lj:,,,,,,,Not started,,,,,,,,,,,,,,
+google analytic suivi des pages dans AccesiDys quelles solutions ?,CNED-524,17208,,Tâche,A faire,,,Majeur,,admin,rkouifi,rkouifi,29/juil./16 2:08 PM,29/juil./16 3:36 PM,05/oct./16 4:25 PM,,,C7,,,0,,"Nous souhaiterions tracker le nombre de clics (par nature de page, par titre, par propriétaire, lien, ...) par les utilisateurs connectés à AccessiDys ou anonymes via Google Analytics.
+Configuration externalisée des informations  : Possibilité d'intégrer google analytic dans compte admin d'AccessiDys (nouvelle page) avec saisie de paramètres de google analytic (identifiants, mot de passe, code UA, ...)  ou autres solutions
+Nous attendons de vous des propositions de mise en place de solutions.",,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006lb:,,,,,,,Not started,,,,,,,,,,,,,,
+"partage twitter, facebook, .. : oter le ""via @accessidys""",CNED-523,17207,,MCO,A faire,,,Majeur,,admin,rkouifi,rkouifi,29/juil./16 2:03 PM,29/juil./16 3:25 PM,07/nov./16 1:14 PM,,,C7,,,0,,"Dans le lien de partage par twitter, facebook, .. : oter le ""via @accessidys""",,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006l3:,,,,,,,Not started,,,,,,,,,,,,,,
+bug profils mal associés au compte,CNED-522,17206,,Bogue,A faire,,,Majeur,,admin,rkouifi,rkouifi,29/juil./16 10:29 AM,29/juil./16 3:23 PM,07/nov./16 1:14 PM,,,C7,,,0,,"Le contexte : l’utilisateur s’authentifie et dispose de plusieurs comptes utilisateurs, puis il se déconnecte (ou ferme et re-ouvre son navigateur ?) et ouvre le lien d’un document sans s’authentifier (anonymement)
+Ce à quoi je m’attends : je ne vois que les profils prévus par l’administrateur pour le mode anonyme/non authentifié
+Ce que j’observe : je vois parmi les profils des profils de mon compte authentifié",Recette/prod,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006kv:,,,,,,,Not started,,,,,,,,,,,,,,
+Aperçu document : Suppression numéro de page du sommaire,CNED-521,17205,,Amélioration,Fait (à livrer),,,Majeur,Terminé,admin,rkouifi,rkouifi,29/juil./16 10:23 AM,03/oct./16 10:46 AM,07/nov./16 1:14 PM,03/oct./16 10:45 AM,,C7,,,0,,"Contexte :
+1) Je choisis un document à partir de la liste des documents. Je clique sur Afficher pour visualiser le document adapté en fonction du profil actuel.
+2) je reçois un lien pour visualiser le document adapté (via email, facebook, ...)
+3) Je consulte un document via la bookmarklet
+4) autres
+
+Dans tous les cas, à partir du moment au j’accède au sommaire :
+==> Ce que je souhaite : Ne plus voir le numéros de page (page X :) dans tout le sommaire
+",,guillaume.ogier,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006kn:,,,,,,,Not started,2016-10-03 10:46:10.612,"03/oct./16 10:46 AM;guillaume.ogier;Evolution effectuée.
+Livrée et installée en production.",,,,,,,,,,,,
+Création d’une demande de certificat (accessidys.org),CNED-520,17204,,Tâche,Validé,,,Majeur,Terminé,admin,rkouifi,rkouifi,27/juil./16 5:29 PM,04/oct./16 11:24 AM,07/nov./16 1:14 PM,03/oct./16 10:45 AM,,,,,0,,,,guillaume.ogier,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006kf:,,,,,,,Not started,2016-10-03 10:45:14.557,"03/oct./16 10:45 AM;guillaume.ogier;Certificat installé en production.
+Mise à jour du proxy effectuée.
+
+Site accessible depuis les adresses :
+http://www.accessidys.org
+http://accessidys.org
+http://www.accessidys.com
+http://accessidys.com
+",,,,,,,,,,,,
+Suppression des anciens profils du compte admin (prod),CNED-519,17203,,Tâche,Validé,,,Majeur,Terminé,admin,rkouifi,rkouifi,27/juil./16 5:28 PM,04/oct./16 11:28 AM,07/nov./16 1:14 PM,03/oct./16 10:43 AM,,,,,0,,,,guillaume.ogier,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006k7:,,,,,,,Not started,2016-10-03 10:43:53.53,03/oct./16 10:43 AM,guillaume.ogier,Suppression effectuée en production par modification directe en base de données fin juillet 2016.,,,,,,,,,,
+Analyse sur les problèmes d’espace disque sur la machine.,CNED-518,17202,,Tâche,Validé,,,Bloquant,Terminé,admin,rkouifi,rkouifi,27/juil./16 5:27 PM,04/oct./16 11:14 AM,07/nov./16 1:14 PM,04/oct./16 11:14 AM,,,,,0,,,,guillaume.ogier,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006jz:,,,,,,,Not started,2016-10-03 10:41:37.717,"03/oct./16 10:41 AM;guillaume.ogier;Saturation ""virtuelle"" de l'espace disque.
+
+Redémarrage de la Virtual Machine a permis de récupérer l'espace.",04/oct./16 11:13 AM,guillaume.ogier,Fournir les accès à la machine et la commande de redémarrage de la machine.,,,,,,,,,
+Éditeur de textes: styles non prises en compte,CNED-517,17201,,Bogue,A faire,,,Majeur,,admin,rkouifi,rkouifi,26/juil./16 11:39 AM,26/juil./16 11:39 AM,07/nov./16 1:14 PM,,,C6,,,0,,"*Contexte *: Dans l'éditeur de textes, j'ajoute un document, je saisis du texte suivant :
+Titre 1: Démonstration.
+Sous-titre 1: Démonstration.
+Titre 2: Démonstration.
+Sous-titre 2: Démonstration.
+Titre 3: Démonstration.
+Titre 4: Démonstration.
+Paragraphe: Démonstration.
+....
+
+Puis j'affecte les styles.
+
+*Ce que je constate* : Tous les styles  (pieds de page, légende, entête de page, citation, annotation, sous-titre 1, sous-titre 2) ne sont pris en compte et ont comme affectation ""Format"" une fois je passe à une autre ligne
+*Ce que je dois avoir *: prise en compte de ces styles dans l'éditeur de texte.",production,rkouifi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006jr:,,,,,,,Not started,,,,,,,,,,,,,,
+Accès à un document partagé,CNED-516,17200,,MCO,Validé,,,Majeur,Terminé,admin,rkouifi,rkouifi,26/juil./16 10:44 AM,21/oct./16 11:57 AM,07/nov./16 1:14 PM,03/oct./16 10:33 AM,C6,,,,0,,"Contexte : J'ai partagé un document via twitter puis j'ai accédé au document via le lien sans se connecter à AccessiDys.
+
+Ce que je constate : Dans le profil actuel, le profil ""coloration en ligne"" est visible deux fois.
+Ce que j'attends :  Dans le profil actuel, le profil ""coloration en ligne"" s'affiche une fois.
+
+Ce profil  ""coloration en ligne"" a été crée à partir du compte administrateur et déclaré comme profil par défaut.",production,guillaume.ogier,rkouifi,,,,,,,,,,,,,,,,,,,,,,26/juil./16 10:42 AM,rkouifi,Doc1.docx,https://cnedadapt.atlassian.net/secure/attachment/14200/Doc1.docx,,,,,,,,,,,,,,0|i006jj:,,,,,,,Not started,2016-10-03 10:37:34.299,03/oct./16 10:37 AM,guillaume.ogier,Traité en supprimant les doublons par modification direct de la base de données fin juillet 2016.,,,,,,,
+Compte admin : Impossible de Supprimer profil,CNED-515,17100,,MCO,Validé,,,Majeur,Terminé,schotard,rkouifi,rkouifi,25/juil./16 6:03 PM,21/oct./16 11:57 AM,07/nov./16 1:14 PM,03/oct./16 10:31 AM,C6,,,,0,,"Contexte : J'ai supprimé un profil existant à partir du compte administration.
+Ce que j'attends : La suppression du profil
+Ce que j'observe : le profil n'est pas supprimé. Il est présent dans la liste des profils avec impossibilité de la modifier (voir PJ) et visible dans le profil actuel.
+
+Piste : Un profil crée avec l'ancienne IHM de gestion de profils
+
+j'ai fait un  test avec un nouveau profil. Pas de problème de suppression.",prod/recette,admin,CnedAdapt,rkouifi,,,,,,,,,,,,,,,,,,,,,25/juil./16 6:03 PM,rkouifi,profil compte admin.docx,https://cnedadapt.atlassian.net/secure/attachment/14100/profil+compte+admin.docx,,,,,,,,,,,,,,0|i006jb:,,,,,,,Not started,2016-07-26 10:41:47.569,"26/juil./16 10:41 AM;admin;De : Kouifi Rachid [mailto:Rachid.Kouifi@cned.fr]
+Envoyé : mardi 26 juillet 2016 10:11
+À : OGIER, Guillaume
+Cc : Preudhomme Isabelle; Chotard, Stephane; Heider, David
+Objet : RE: AccessiDys : Bug majeur réf Jira 515
+
+Information complémentaire :
+Pour qu'un profil crée par le compte administrateur apparaisse dans la liste des profils de tous les utilisateurs, il faudra le déclarer profil par défaut.
+
+Rachid KOUIFI
+Chargé de mission - Innovation (Accessibilité)
+Direction de l'Innovation / Site Cassin
+Tél. : +33(0)5 49 49 95 33
+
+
+
+________________________________________
+De : Kouifi Rachid
+Envoyé : mardi 26 juillet 2016 10:01
+À : OGIER, Guillaume
+Cc : Preudhomme Isabelle; Chotard, Stephane; Heider, David
+Objet : RE: AccessiDys : Bug majeur réf Jira 515
+
+Ok pour votre explication concernant le  le profil ""AccessiDys par défaut"".
+
+Le profil ""surlignage"" et ""profil par défaut"" ont été crées par le compte ""adaptation@cned.fr"". Par conséquent, je devrais pouvoir les supprimer en se connectant avec ce même compte. Probablement, quand on a remplacé ""cnedadapt"" par ""accessidys"", cette relation a été ""cassée"".
+
+A quel niveau, les profils sont-ils stockés quand ils sont crées ou mis à jour ?
+Quand j'ai cliqué sur le bouton supprimer, le système ne m'a alerté ou refusé l'action.
+
+A très court terme : Merci de faire le nécessaire pour qu'on puisse les supprimer.
+
+La règle est que seul celui qui a crée le profil est autorisé à le supprimer.
+Tout profil crée à partir du compte administrateur (adaptation@cned.fr"") apparaîtra dans la liste des profils de tous les utilisateurs. Il est  également accessible dans le cas de documents partagés ou délégués.
+
+Rachid KOUIFI
+Chargé de mission - Innovation (Accessibilité)
+Direction de l'Innovation / Site Cassin
+Tél. : +33(0)5 49 49 95 33
+
+
+
+________________________________________
+De : OGIER, Guillaume <guillaume.ogier@capgemini.com>
+Envoyé : mardi 26 juillet 2016 09:11
+À : Kouifi Rachid
+Cc : Preudhomme Isabelle; Chotard, Stephane; Heider, David
+Objet : [SPAM_PROBABLE]RE: AccessiDys : Bug majeur réf Jira 515
+
+Bonjour,
+
+Ce point a été identifié lors de l’analyse de la demande d’Isabelle la semaine dernière.
+
+En effet, seule la personne ayant créée le profil est en mesure de pouvoir le supprimer. (Il faut que le profil appartienne à l’utilisateur).
+Dans le cas présent, le profil n’appartient pas à l’utilisateur : On peut voir dans la capture d’écran que le possesseur est « Accessidys », ce qui  signifie qu’il n’appartient pas à l’utilisateur courant.
+
+Il peut s’agir d’un profil par défaut ou d’un profil favoris. Dans ce cas, il est impossible de supprimer ce profil.
+
+Si l’utilisateur est bien le créateur alors, nous pouvons mettre à jour la relation entre le profil et l’utilisateur pour permettre à l’utilisateur de supprimer ce profil.
+
+Concernant le profil « Accessidys par défaut », il s’agit du profil par défaut créé par patch. Le patch est toujours actif, par conséquent, à la suppression du profil, le patch s’exécutera de nouveau recréant ainsi le profil. Comme indiqué la semaine dernière ce point nécessite une livraison d’une nouvelle version du code avec désactivation de ce patch.
+
+Rachid existe-t-il une documentation des exigences en terme de fonctionnalité ? Par exemple, quels sont les profils qui peuvent être affichés par l’utilisateur et les droits sur ceux-ci ?
+Dans JIRA, je n’ai pas réussi à trouver .
+Merci d’avance.
+
+Cordialement,
+_______________________________________________________________________
+Guillaume OGIER
+","04/oct./16 12:30 PM;CnedAdapt;Après purge d'anciennes données, la suppression d'un profil crée à partir d'un compte administrateur est possible.
+Demande à clôturer",,,,,,,,
+Affichage de documents : le temps de chargement est très élevé,CNED-514,17006,,Bogue,Bloqué,,,Bloquant,,admin,rkouifi,rkouifi,04/juil./16 11:14 AM,06/juil./16 5:43 PM,07/nov./16 1:14 PM,,C6,,,,0,,"Dans la liste de documents, je clique sur ""Afficher""
+Ce que j'observe : le temps de chargement est très élevé (de 1m30 à 2mn).
+Ce que j'attends : un temps de chargement plus réduit (quelques secondes)
+
+idem quand j'accède au document en cliquant sur le bouton ""modifier""
+",Recette / Production,rkouifi,,,,,,,,,,,,,,,,,,,,,,,04/juil./16 11:13 AM,rkouifi,image001.jpg,https://cnedadapt.atlassian.net/secure/attachment/14004/image001.jpg,04/juil./16 11:13 AM,rkouifi,image002.jpg,https://cnedadapt.atlassian.net/secure/attachment/14005/image002.jpg,,,,,,,,,,,,,0|i006ha:zhv,Sprint 6,,,,,,Not started,,,,,,,,
+[PROD] Impossible de renommer un document en mode HL avec IE11,CNED-513,17005,,Bogue,Validé,,,Majeur,,admin,ajouhri,ajouhri,01/juil./16 12:07 PM,04/oct./16 11:30 AM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : PROD
+Navigateur : IE 11
+Support : PC
+
+Mode : Hors ligne
+
+Contexte : Renommage de document en mode déconnecté
+
+Actions réalisées :
+- Connexion à l'application
+- Deconnexion du réseau
+- Affichage de la liste des documents
+- Renommer un document
+
+Résultat observé :
+Impossible de renommer un document, affichage du message :
+Renommage de votre document en cours. Veuillez patienter...
+
+(J'ai attendu + de 5 mn
+CF : Screen",,ajouhri,,,,,,,,,,,,,,,,,,,,,,,01/juil./16 12:07 PM,ajouhri,Renommer DOC IE11 HL.png,https://cnedadapt.atlassian.net/secure/attachment/14003/Renommer+DOC+IE11+HL.png,,,,,,,,,,,,,,0|i006ha:zhr,Sprint 6,,,,,,Not started,,"17/juil./16 9:50 PM;ajouhri;Corrigé.
+
+Testé le 17.07.2016, anomalie non reproduite.",,,,,,,,,
+"[PROD] Impossible d'accéder à l'application avec IE11 en mode HL si on ferme, puis réouvre le navigateur",CNED-512,17004,,Bogue,Annulé,,,Majeur,,admin,ajouhri,ajouhri,01/juil./16 12:01 PM,01/juil./16 4:29 PM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : PROD
+Navigateur : IE 11
+Support : PC
+
+Mode : Hors ligne
+
+Contexte : Accès à l'application en mode déconnecté
+
+Actions réalisées :
+- Connexion à l'application
+- Deconnexion du réseau
+- Fermeture du navigateur
+- Ouverture du navigateur
+- Connexion à l'URL : https://accessidys.com/
+
+Résultat observé :
+Impossible d'accéder à l'application avec IE11 en mode HL si on ferme, puis réouvre le navigateur.
+
+CF : Screen
+",,ajouhri,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006ha:zhi,Sprint 6,,,,,,Not started,,"01/juil./16 4:29 PM;ajouhri;Non reproduite le jour même.
+Je passe la fiche à Annuler.",,,,,,,,,,,,
+"[PROD] Lors de la création d'un nouveau profil en HL, la liste des styles n'apparaît pas - IE11",CNED-511,17003,,Bogue,Annulé,,,Majeur,,admin,ajouhri,ajouhri,01/juil./16 11:57 AM,04/oct./16 11:33 AM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : PROD
+Navigateur : IE 11
+Support : PC
+
+Mode : Hors ligne
+
+Contexte : Création de profil en mode déconnecté
+
+
+Actions réalisées :
+- Connexion à l'application
+- Deconnexion du réseau
+- Affichage de la page page profils
+- Ajout d'un nouveau profil
+
+Résultat observé :
+La liste des styles n’apparaît pas lors de la création d'un nouveau profil.
+
+CF : Screen
+",,ajouhri,schotard,,,,,,,,,,,,,,,,,,,,,,01/juil./16 11:58 AM,ajouhri,Ajouter new profil IE1 Hl.png,https://cnedadapt.atlassian.net/secure/attachment/14002/Ajouter+new+profil+IE1+Hl.png,,,,,,,,,,,,,,0|i006ha:zh,Sprint 6,,,,,,Not started,2016-07-06 17:44:48.784,06/juil./16 5:44 PM,schotard,Non reproduit en prod,"08/juil./16 11:42 AM;ajouhri;Non reproduit également.
+
+Comme pour la 507, cela devait dû à des problème de lenteur.",,,,,,
+Affichage des profils trop long,CNED-510,17002,,Bogue,Bloqué,,,Majeur,,admin,ajouhri,ajouhri,01/juil./16 11:54 AM,06/juil./16 5:43 PM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : PROD
+Navigateur : IE 11
+Support : PC
+
+Mode : Hors ligne
+
+Contexte : Affichage du profil en mode déconnecté
+
+
+Actions réalisées :
+- Connexion à l'application
+- Déconnexion du réseau
+- Affichage de la page page profils
+
+Résultat observé :
+L'affichage des profils est trop long.
+
+CF : PJ
+",,ajouhri,schotard,,,,,,,,,,,,,,,,,,,,,CNED-498,01/juil./16 11:54 AM,ajouhri,Affichage profil IE11 HL.png,https://cnedadapt.atlassian.net/secure/attachment/14001/Affichage+profil+IE11+HL.png,,,,,,,,,,,,,,0|i006ha:zg,Sprint 6,,,,,,Not started,2016-07-04 10:19:29.338,"04/juil./16 10:19 AM;schotard;24/06 (mail) : affichage d’un message d’attente pour compenser les longs temps de réponse, ne peut pas être développée si rapidement car la problématique s’avère bien plus complexe, sachant que la barre de progression est bel et bien implémentée mais n’apparait pas à cause justement des traitements nécessaires pour afficher tous les aperçus. Nous pouvons faire des propositions mais cela ne sera pas en dessous de 3j de dev/TU.",,,,,,,,,
+[PROD] Impossible d'ouvrir un document en mode HL avec IE11,CNED-509,17001,,Bogue,A faire,,,Majeur,,admin,ajouhri,ajouhri,01/juil./16 11:49 AM,08/juil./16 11:40 AM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : PROD
+Navigateur : IE 11
+Support : PC
+
+Mode : Hors ligne
+
+Contexte : Import de document en mode déconnecté
+
+Actions réalisées :
+- Connexion à l'application
+- Deconnexion du réseau
+- Dans Document, cliquer sur Ajout de document
+- Cliquer sur Ouvrir un document
+- Selectionner un PDF, PNG, EPUB ou JPG, puis valider
+
+Résultat observé :
+Affichage de l'éditeur de document vide.
+Seul le nom du document apparaît.
+
+CF : PJ
+",,ajouhri,schotard,,,,,,,,,,,,,,,,,,,,,,01/juil./16 11:49 AM,ajouhri,Import doc HL IE11.png,https://cnedadapt.atlassian.net/secure/attachment/14000/Import+doc+HL+IE11.png,,,,,,,,,,,,,,0|i006ha:zf,Sprint 6,,,,,,Not started,2016-07-06 17:44:36.708,06/juil./16 5:44 PM,schotard,Non reproduit en prod,"08/juil./16 11:40 AM;ajouhri;Je reproduis l'anomalie, mais comme expliqué par mail, je pense que cela est dû à des problème de lenteur important.",,,,,,
+[PROD]Impossible d'activer/désactiver unitairement l'océrisation ou la synthèse vocale sur un seul utilisateur,CNED-508,17000,,Bogue,Validé,,,Majeur,,admin,ajouhri,ajouhri,30/juin/16 11:40 PM,04/oct./16 11:31 AM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : PROD
+Navigateur : FireFox 42
+Google Chrome : Version 47.0.2526.111 m
+IE11
+Support : PC
+Mode : Connecté
+
+Actions réalisées :
+- Se connecter avec un compte admin : adaptation@cned.fr // adaptationcned
+- Cliquer sur administration
+- Activer l'océrisation et la synthèse vocal sur un utilisateur
+=> Cocher les cases pour l'utilisateur : testajoprod005.29.06.2016@yopmail.com
+
+Résultat observé :
+Impossible d'activer/désactiver unitairement l'océrisation ou la synthèse vocale sur un seul utilisateur.
+",,ajouhri,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006ha:zb,Sprint 6,,,,,,Not started,,"17/juil./16 9:43 PM;ajouhri;Corrigée.
+
+Testé le 17.07.2016, anomalie non reproduite.",,,,,,,,,,,,
+[PROD]Impossible de supprimer un profil avec IE11,CNED-507,16900,,Bogue,Annulé,,,Majeur,,admin,ajouhri,ajouhri,29/juin/16 7:45 PM,04/oct./16 11:33 AM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : PROD
+Navigateur : IE11
+Support : PC
+Mode : Connecté
+Contexte : Suppression d'un profil
+
+Actions réalisées :
+- Création d'un nouvelle utilisateur : Testajoprod004.29.06.2016@yopmail.com // CnedAjo2016
+- Création d'un profil
+- Modification du profil
+- Suppression du profil
+
+Résultat observé :
+Impossible de supprimer un profil avec IE11.
+Affichage du message : Suppression du profil en cours...
+(j'ai attendu plus de 5 mn)
+",,ajouhri,schotard,,,,,,,,,,,,,,,,,,,,,,29/juin/16 7:45 PM,ajouhri,Supp profil IE11.png,https://cnedadapt.atlassian.net/secure/attachment/13900/Supp+profil+IE11.png,,,,,,,,,,,,,,0|i006ha:zd,Sprint 6,,,,,,Not started,2016-07-06 17:44:25.849,06/juil./16 5:44 PM,schotard,Non reproduit en prod,"08/juil./16 9:35 AM;ajouhri;Testé le 08.07.2016 sur l'environnement de PROD.
+
+Anomalie non reproduite.
+Le pb venait probablement des lenteurs le jour de la recette...",,,,,,
+[PROD]Logo déformé lors de la connexion à dropbox pendant l'inscription,CNED-506,16800,,Bogue,Validé,,,Cosmétique,,admin,ajouhri,ajouhri,28/juin/16 9:35 PM,04/oct./16 11:34 AM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : PROD
+Navigateur :
+Google Chrome : Version 47.0.2526.111 m
+FireFox 42
+Support : PC
+Mode : Connecté
+
+Contexte : Création de compte
+
+Actions réalisées :
+- Création d'un nouvel utilisateur
+
+Résultat observé :
+Le logo est déformé lors de la connexion à dropbox pendant l'inscription.
+
+cf : screen",,ajouhri,,,,,,,,,,,,,,,,,,,,,,,28/juin/16 9:34 PM,ajouhri,LogoReduit.png,https://cnedadapt.atlassian.net/secure/attachment/13800/LogoReduit.png,,,,,,,,,,,,,,0|i006ha:z9,Sprint 6,,,,,,Not started,,"29/juin/16 10:51 PM;ajouhri;Corrigé.
+
+Testé le 29.06.2016, anomalie non reproduite.",,,,,,,,,
+Impossible de créer un profil HL avec Firefox,CNED-505,16701,,Bogue,Annulé,,,Majeur,,admin,ajouhri,ajouhri,23/juin/16 2:05 AM,23/juin/16 2:10 AM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : Recette
+Navigateur :
+FireFox : 42.0
+Support : PC
+Mode : HL
+Contexte : Création d'un profil
+
+Actions réalisées :
+- Désactivation de la connexion
+- Création d'un profil
+
+Résultat observé :
+La liste des styles n'apparaît pas/
+CF : Screen",,ajouhri,,,,,,,,,,,,,,,,,,,,,,,23/juin/16 2:05 AM,ajouhri,Profil HL FF.png,https://cnedadapt.atlassian.net/secure/attachment/13601/Profil+HL+FF.png,,,,,,,,,,,,,,0|i006j3:,,,,,,,Not started,,"23/juin/16 2:10 AM;ajouhri;A supprimer, non reproduit... ",,,,,,,,,
+Impossible de renommer un document HL,CNED-504,16700,,Bogue,Annulé,,,Majeur,,admin,ajouhri,ajouhri,23/juin/16 1:59 AM,18/juil./16 5:48 PM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : Recette
+Navigateur :
+Google Chrome : Version 47.0.2526.111 m
+FireFox : 42.0
+Support : PC
+Mode : HL
+Contexte : Modifier titre de document
+
+Actions réalisées :
+- Désactivation de la connexion
+- Création d'un document
+- Enregistrement du document
+- Modification du titre du document
+
+Résultat observé :
+Impossible de renommer le document, la page bloque sur le message suivant :
+Renommage de votre document en cours. Veuillez patienter... loader",,ajouhri,schotard,,,,,,,,,,,,,,,,,,,,,,23/juin/16 1:59 AM,ajouhri,Titre HL.png,https://cnedadapt.atlassian.net/secure/attachment/13600/Titre+HL.png,,,,,,,,,,,,,,0|i006ha:zi,Sprint 6,,,,,,Not started,2016-06-27 09:56:11.389,"27/juin/16 9:56 AM;schotard;24/06 : non reproduit ni par Capgemini, ni en recette","18/juil./16 5:48 PM;ajouhri;Anomalie non reproduite en recette le 23/06/2016.
+Anomalie annulée.",,,,,,,,
+Impossible d'enregistrer un texte océrisé,CNED-503,16603,,Bogue,Validé,,,Majeur,Terminé,admin,ajouhri,ajouhri,22/juin/16 11:22 PM,07/juil./16 9:36 AM,07/nov./16 1:14 PM,06/juil./16 5:38 PM,,,,,0,,"Environnement : Recette
+Navigateur :
+Google Chrome : Version 47.0.2526.111 m
+FireFox : 42.0
+Support : PC
+Mode : Connecté
+Contexte : Enregistrement d'un document
+
+Actions réalisées :
+- Création d'un document avec une image à texte
+- Océrisation du texte
+- Enregistrement du document
+- Affichage du document
+
+Résultat observé :
+Lorsque j'affiche de nouveau le document, le texte océrisé n'apparaît plus.
+CF : Screen",,ajouhri,,,,,,,,,,,,,,,,,,,,,,,22/juin/16 11:22 PM,ajouhri,OCR.png,https://cnedadapt.atlassian.net/secure/attachment/13503/OCR.png,,,,,,,,,,,,,,0|i006ha:z,Sprint 6,,,,,,Not started,,"06/juil./16 11:29 PM;ajouhri;Corrigé.
+
+Testé le 06.07.2016, anomalie non reproduite.",,,,,,,,,
+Profil - Le nom du bouton pour valider une règle est incorrecte,CNED-502,16602,,Bogue,Validé,,,Mineur,Terminé,admin,ajouhri,ajouhri,22/juin/16 9:07 PM,27/juin/16 9:53 AM,07/nov./16 1:14 PM,27/juin/16 9:53 AM,,,,,0,,"Environnement : Recette
+Navigateur :
+Google Chrome : Version 47.0.2526.111 m
+Support : PC
+Mode : Connecté
+
+Contexte : Création/Modification d'un profil
+
+Actions réalisées :
+- Création d'un profil
+- Modification d'un style
+
+Résultat observé :
+Le nom du bouton pour valider le style est incorrecte :
+VALIDERLAREGLE
+
+CF : Screen",,ajouhri,rkouifi,,,,,,,,,,,,,,,,,,,,,,26/juin/16 11:44 PM,ajouhri,Bouton style.png,https://cnedadapt.atlassian.net/secure/attachment/13700/Bouton+style.png,22/juin/16 9:06 PM,ajouhri,Bouton valider.png,https://cnedadapt.atlassian.net/secure/attachment/13501/Bouton+valider.png,,,,,,,,,,,,,0|i006ha:y,Sprint 6,,,,,,Not started,2016-06-23 15:28:48.423,"23/juin/16 3:28 PM;rkouifi;Remplacer ""VALIDERLAREGLE"" par ""VALIDER""
+
+NB : Dans AccessiDys, on ne parle plus de règle mais de style","26/juin/16 11:44 PM;ajouhri;Testé le 26.06.2016, le bouton se nomme maintenant : ENREGISTRER LE STYLE
+Est-ce le résultat attendu ? ",,,,,
+Impossible de se connecter à DropBox lors de l'inscription,CNED-501,16601,,Bogue,Validé,,,Bloquant,Terminé,admin,ajouhri,ajouhri,22/juin/16 8:56 PM,27/juin/16 9:53 AM,07/nov./16 1:14 PM,27/juin/16 9:53 AM,,,,,0,,"Environnement : Recette
+Navigateur :
+Google Chrome : Version 47.0.2526.111 m
+FireFox : 42.0
+Support : PC
+Mode : Connecté
+Contexte : Création d'un compte
+
+Actions réalisées :
+- Création d'un compte
+- Connexion à dropbox
+
+Résultat observé :
+URL : https://www.dropbox.com/1/oauth2/authorize?response_type=code&redirect_uri=https%3A%2F%2Frecette.accessidys.com%2Fauth%2Fdropbox%2Fcallback&client_id=9g5rirnkbtegr2v
+
+
+Error (400)
+It seems the app you were using submitted a bad request. If you would like to report this error to the app's developer, include the information below.
+
+
+More details for developers
+
+Invalid redirect_uri: ""https://recette.accessidys.com/auth/dropbox/callback"": It must exactly match one of the redirect URIs you've pre-configured for your app (including the path).",,ajouhri,rkouifi,,,,,,,,,,,,,,,,,,,,,,22/juin/16 8:56 PM,ajouhri,Dropbox.png,https://cnedadapt.atlassian.net/secure/attachment/13500/Dropbox.png,,,,,,,,,,,,,,0|i006ha:x,Sprint 6,,,,,,Not started,2016-06-23 15:37:38.964,"23/juin/16 3:37 PM;rkouifi;Probablement il faudra modifier dans l'API de dropbox suite au changement du nom de l'application.
+
+l'API Dropbox (pour Prod et Recette):
+Login/Password: adaptation@cned.fr / adaptationcned
+
+Je pense que le changement est au niveau de :Redirect URIs
+Remplacer ""https://cned-adapt2.cned.fr/auth/dropbox/callback"" par https://recette.accessidys.com/auth/dropbox/callback","26/juin/16 11:39 PM;ajouhri;Corrigé.
+
+Testé le 26.06.2016, anomalie non reproduite.",,,,,,,,
+Aperçu d'un profil : texte de démo centré,CNED-500,16600,,Amélioration,Validé,,,Majeur,Terminé,schotard,rkouifi,rkouifi,22/juin/16 10:22 AM,27/juin/16 9:57 AM,07/nov./16 1:14 PM,27/juin/16 9:57 AM,C6,,,,0,,"Contexte : Je clique sur ""Ajouter profil"" puis sur la ligne de style ""Titre 1"", je clique sur le stylet : l'interface ""Modifier les valeurs dy style : TITRE 1"" s'affiche.
+Ce que j'observe : Le texte de démo est  centré
+Ce que j'attends : le texte de démo doit être aligné à gauche.
+
+NB : Les dys ne peuvent pas lire un texte centré.",recette,ajouhri,rkouifi,schotard,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006ha:v,Sprint 6,,,,,,Not started,2016-06-26 23:49:12.377,"26/juin/16 11:49 PM;ajouhri;Corrigé.
+
+Testé le 26.06.2016, anomalie non reproduite, le texte est bien aligné à gauche.",27/juin/16 9:56 AM,schotard,26/06 : vu avec le CNED : amélioration,,,,,,,,,
+Aperçu des profils différent d'un navigateur à un autre,CNED-499,16501,,Bogue,Annulé,,,Majeur,,admin,ajouhri,ajouhri,19/juin/16 9:33 PM,19/juin/16 9:57 PM,07/nov./16 1:14 PM,,,,,,0,,"Environnement : Recette
+Navigateur :
+Google Chrome : Version 47.0.2526.111 m
+FireFox : 42.0
+Support : PC
+
+Mode : Connecté
+Contexte : PROFIL
+
+Actions réalisées :
+- Suppression des historiques
+- Création d'un nouveau compte (testajo029.19.06.2016@yopmail.com // CnedAjo2016)
+- Affichage de la page des profils
+
+Résultat observé :
+Entre firefox et Chrome, il y a une différence d'affichage des profils.
+Sur chrome, on ne voit qu'une ou deux ligne pour chaque aperçu de style, sur firefox on en voit plus de 5 lignes.
+
+CF : Screen.",,ajouhri,,,,,,,,,,,,,,,,,,,,,,,19/juin/16 9:33 PM,ajouhri,Chrome profil.png,https://cnedadapt.atlassian.net/secure/attachment/13401/Chrome+profil.png,19/juin/16 9:33 PM,ajouhri,Firefox profil.png,https://cnedadapt.atlassian.net/secure/attachment/13400/Firefox+profil.png,,,,,,,,,,,,,0|i006hr:,,,,,,,Not started,,"19/juin/16 9:57 PM;ajouhri;Anomalie à supprimer, erreur de caches.",,,,,,
+Impossible de créer un profil ,CNED-498,16500,,Bogue,Validé,,,Bloquant,Terminé,admin,ajouhri,ajouhri,19/juin/16 9:23 PM,04/juil./16 10:16 AM,07/nov./16 1:14 PM,27/juin/16 9:58 AM,,,,,0,,"Environnement : Recette
+Navigateur :
+Google Chrome : Version 47.0.2526.111 m
+FireFox : 42.0
+Support : PC
+
+Mode : Connecté
+Contexte : PROFIL
+
+Actions réalisées :
+- Suppression des historiques
+- Création d'un nouveau compte (testajo029.19.06.2016@yopmail.com // CnedAjo2016)
+- Affichage de la page des profils
+- Cliquer sur ajouter un profil
+- Enregistrer le profil
+
+Résultat observé :
+- Impossible de créer un nouveau profil, lorsque j'enregistre un nouveau profil, j'ai bien le message - PROFIL AJOUTÉ AVEC SUCCÈS ! - mais le profil n'apparait pas dans la liste.
+
+- De plus, présence de profil ayant en propriétaire ""Moi même"", non créé par moi même (exemple : Test GML, profil 2, clara, Test_REH_5 etc.) n'ayant toutes les règles de styles associées.
+
+",,ajouhri,rkouifi,schotard,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006ha:r,Sprint 6,,,,,,Not started,2016-06-23 15:41:18.26,"22/juin/16 9:17 PM;ajouhri;Corrigé.
+
+Testé le 22.06.2016, anomalie non reproduite.","23/juin/16 3:41 PM;rkouifi;OK mais l'enregistrement dure trop longtemps. idem pour l'affichage de la liste des profils
+Prévoir un message d'attente",04/juil./16 10:16 AM,schotard,Temps de réponse / Message d'attente cf. CNED-510,,,,,,,,
+rediriger les urls  vers https://accessidys.com,CNED-497,16401,,Tâche,Validé,,,Majeur,,admin,rkouifi,rkouifi,15/juin/16 5:10 PM,10/oct./16 11:33 AM,07/nov./16 1:12 PM,,,C6,,,0,,"1) rediriger les urls ci-dessous vers https://accessidys.com​ :
+•​accessidys.org
+•accessidys.net
+•accessidys.fr
+•https://adapt.cned.fr
+
+NB : actuellement la rédirection faite dans le sens inverse çad : accessidys.* vers https://adapt.cned.fr
+
+2) rediriger les urls ci-dessous vers https://recette.accessidys.com​ :
+•https://cned-adapt2.cned.fr
+
+============================================================
+Ces quatre domaines (accessidys.com, accessidys.org, accessidys.net, accessidys.fr) doivent pointer (A) vers 84.39.32.22
+Et recette.accessidys.com doit pointer sur 84.39.33.136
+
++D'après le fournisseur de domaines :+
+Ces quatre domaines, ainsi que les entrées DNS www, ont déjà été traitées à la date du 8 juin.
+
+Concernant les redirections de type 301, vous devrez directement les gérer sur votre service HTTP soit dans les virtualhost (Apache), server (NGinx) ou dans le web.config (IIS).
+
+le nouveau champs A a été crée :
+➜  ~ dig recette.accessidys.com
+
+;; QUESTION SECTION:
+;recette.accessidys.com.        IN    A
+
+;; ANSWER SECTION:
+recette.accessidys.com.    1800    IN    A    84.39.33.136",,guillaume.ogier,rkouifi,schotard,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006hb:,Sprint 7,,,,,,Not started,2016-06-17 15:28:34.848,"17/juin/16 3:28 PM;schotard;Les redirections au niveau nom de domaine sont à traiter par le gestionnaire du nom de domaine.
+Les redirections au sein de l'application sont un paramètre à modifier au niveau dev/déploiement.",10/oct./16 11:33 AM,guillaume.ogier,Effectué. Modifié par accessidys.org en suite pour la production.,,,,,,,,,
+Configuration du certificat de sécurité dans le serveur AccessiDys,CNED-496,16400,,MCO,Validé,,,Majeur,Terminé,admin,rkouifi,rkouifi,15/juin/16 3:54 PM,07/juil./16 10:15 AM,07/nov./16 1:14 PM,17/juin/16 3:16 PM,,C6,,,0,,"Configuration du certificat de sécurité dans le serveur AccessiDys pour utiliser les deux fichiers : accessidys_com.crt et DigiCertCA.crt​
+
+CF email à Stéphane du 13 juin 2016 à 18:13
+Voir PJ des deux fichiers zip",,ajouhri,rkouifi,,,,,,,,,,,,,,,,,,,,,,15/juin/16 3:53 PM,rkouifi,accessidys_com_976950.zip,https://cnedadapt.atlassian.net/secure/attachment/13300/accessidys_com_976950.zip,20/juin/16 7:18 PM,ajouhri,Jira 496.png,https://cnedadapt.atlassian.net/secure/attachment/13405/Jira+496.png,15/juin/16 3:53 PM,rkouifi,recette_accessidys_com_977474.zip,https://cnedadapt.atlassian.net/secure/attachment/13301/recette_accessidys_com_977474.zip,,,,,,,,,,,,0|i006h3:,Sprint 6,,,,,,Not started,2016-06-20 19:18:21.77,"20/juin/16 7:18 PM;ajouhri;CapGemini : Utiliser les nouvelles adresses (https://www.accessidys.com ou https://recette.accessidys.com), et vérifier que le certificat est bon (icone https verte non barrée)
+
+AJO :
+Testé le 20.06.2016
+- Le certificat est OK pour l’environnement de recette : https://recette.accessidys.com/#/
+- Par contre, il est KO pour l'environnement de PROD : https://www.accessidys.com
+
+CF : Screen",,,
+Profils : Manque le bouton fermer et picto croix dans Apercu,CNED-495,16309,,Bogue,Annulé,,,Majeur,,admin,rkouifi,rkouifi,13/juin/16 4:28 PM,15/juin/16 5:12 PM,07/nov./16 1:14 PM,,C6,,,,0,,"A partir de la liste des profils, je clique sur ""le picto Action"" puis  ""Aperçu"".
+Ce que je constate : Je ne peux pas fermer l'interface
+Ce que j'attends : voir le bouton ""Fermer"" en bas de l'interface et un picot ""Croix"" en haut et à droite de l'interface.",,rkouifi,schotard,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006gv:,,,,,,,Not started,2016-06-15 17:12:10.091,15/juin/16 5:12 PM,schotard,Idem CNED-440,,,,,,,,,,
+Affichage de documents : Les liens url ajoutés dans l'éditeur de textes ne fonctionnent pas,CNED-494,16308,,Bogue,Validé,,,Bloquant,Terminé,admin,rkouifi,rkouifi,13/juin/16 4:22 PM,20/juin/16 10:11 AM,07/nov./16 1:14 PM,17/juin/16 3:25 PM,C6,,,,0,,"Contexte : J'ai crée un document avec un lien url.
+Ce que je constate : Quand j'affiche ce document, le lien n'est pas cliquable
+Ce que j'attends ; Quand j'affiche ce document, le lien est cliquable et son contenu doit s'afficher dans la même interface.",recette,ajouhri,rkouifi,schotard,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i006gn:,Sprint 6,,,,,,Not started,2016-06-17 16:09:42.458,"17/juin/16 4:09 PM;schotard;Pour faire un lien d’un document vers un autre, il faut veiller à ne prendre que l’URL dropbox pour construire le lien. Si l’URL complète du document (ie. Avec l’adresse de l’application) est configurée dans le lien, cela ne peut fonctionner car cela revient à demander d’adapter l’application elle-même.","19/juin/16 11:45 PM;ajouhri;Corrigé.
+
+Testé le 19.06.2016, anomalie non reproduite.",,,,,,,,,,,
+Profils _ IHM modifier les styles : mauvais positionnement du cadre du texte de démo et les 2 derniers champs,CNED-493,16307,,Bogue,Annulé,,,Majeur,,admin,rkouifi,rkouifi,13/juin/16 4:08 PM,17/juin/16 3:24 PM,07/nov./16 1:14 PM,,C6,,,,0,,"Gestion des profils
+Dans l'interface ""Modifier les valeurs de styles .."", le cadre du texte de démonstration est positionnée en bas et à droite de l'interface. IL devrait être positionné comme dans la version précédente à savoir en haut à droite de l'interface.
+D'autre part, les champs ""Espace entre les mots"" et ""Espace entre les caractères"" sont décalés par rapport aux autres champs.",recette,rkouifi,,,,,,,,,,,,,,,,,,,,,CNED-486,,13/juin/16 4:06 PM,rkouifi,modifier les valeurs du style.pdf,https://cnedadapt.atlassian.net/secure/attachment/13203/modifier+les+valeurs+du+style.pdf,,,,,,,,,,,,,,0|i006gf:,Sprint 6,,,,,,Not started,,,,,,,,,,,
+Editeur de textes : Écrasement de données après enregistrement d'un document avec numéro,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de modifier ou afficher un document en mode déconnecté avec Firefox,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Administration - Lors de l'ajout d'un style, le menu HTML est horizontal sur Firefox",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de faire une océrisation avec Chrome,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage du mauvais document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Certains format n'apparaissent pas dans l’aperçu des documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Décalage sur les champs lors de la modification des styles,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible se connecter à l'application après suppression d'un compte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de partager un profil via FaceBook,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Application mise ""Hors connexion"" alors que la connexion est activée",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de déléguer un profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Code Google Analytics à intégrer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partage de document : non réception de mail,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Dysfonctionnement sur les profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Le clique sur l'édition d'un style ferme la pop-up de la modification d'un profil sur IE11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Lors de l'enregistrement d'un document, celui-ci n'apparaît pas dans la liste des documents",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de partager un profil par mail ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"La page ""Mes profils"" donne un aperçu des profils trop petit",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Amélioration image entièrement côté client.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 4008 :  Règles d'adaptation : ajout coloration et espacement entre chiffres ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 4162 :Documentations techniques de AccessiDys (ancien Cned-Adapt),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 4162 : Règles d'adaptation_ Unité Polices,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 4162 : Règles d'adaptation_ Ajout Polices,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 4162: Remplacer Cned-Adapt par Accessidys,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de se connecter à l'application avec Firefox,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier le script d'initialisation de la BD.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document partagé : le profil actuel n'est pas visible,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Navigation web adapté : Page blanche,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification/création d'un document - Insertion de saut de ligne indésirable,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Dupliquer profil - Présence de l'ancienne IHM lors de la duplication d'un profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Présence d'anomalies sur certains styles,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mauvaise coloration des lignes dans l'aperçu des profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synchronisation des profils : crée par un compte et synchronisé avec un autre compte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Les annotations sur les documents ne sont pas correctement alignées,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+A SUPPRIMER,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ajouter un profil : Valeurs de certains styles sont vides,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification d'un profil en passant par « Modifier »,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Connexion à un compte Administration : Fonctionnalités innacessibles,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Compte administrateur :connexion  impossible,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil - Modification d'un profil avec IE10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de se connecter à l'application,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Afficher d'un document : Missing !!!,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier un document : Missing !!,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ajouter un document : Missing !!,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ajouter un document : Affichage sur une seule page quelque soit sa taille/longueur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier  les valeurs d'un style,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ajouter un profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Problème d'encodage lors de la bookMarklet sur certaines page html.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mode déconnecté : Synchronisation régulière du document/profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de créer un nouveau profil en tant qu'administrateur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Afficher d'un document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier profil : Fenêtre de démonstration,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil : Aperçu _ Ajouter un bouton « fermer » qui permet de revenir à la liste des profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Mode déconnecté : Affichage du message ""L'affichage de ce document nécessite au moins un affichage préalable via internet.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+césure phonétique vs. typographique,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ surlignage et fin de lignes,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de texte : enregistrement document non prise en compte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Faire un aperçu d'un document texte.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Sous-titres ne sont prise en compte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil : Profil non vivible dans profil actuel après sa création,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Ajout de lignes vides dans le texte après chaque rafraîchissement de la page,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Éditeur de textes : impossible de supprimer un lien d'un texte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage document : document non adapté correctement ==> polices,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mode déconnecté : pas de maj de document après déconnexion de l'appli,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Affichage du message ""L'application n'a pas pu se connecter à DropBox."" ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale  entièrement côté client,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier un document : Nom du document vide,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synchronisation des documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"lors de la création d'un style, le terme ""Règles"" apparaît toujours",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Le texte de démonstration à modifier cf. création de profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bouton ajouter un profil : l'ancienne IHM est affichée,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ajouter l'info-bulle sur le menu d'ouverture d'un document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification d'un document non fonctionnelle,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Déconnexion en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ajouter un profil - Champs non saisissables et décalage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Navigation adaptée activée malgré la réactivation du wifi.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"La fermeture en mode aperçu temporaire, ouvre une popup invitant à la fermeture de l'onglet par l'utilisateur",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Voir l'impact sur le compte drop box d'un téléchargement massif d'un document (quota de connexions ou téléchargement),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Champs de recherche dans la pop-up de la liste des documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ecran ajouter un profil même IHM que pour modifier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Contrôle d'existence du nom du profil créé/modifié,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Dans la liste des styles, remplacer le mot ""Règles"" par ""Styles"", stylo à la place de ""Modifier""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Initialisation du profil par Cned adapt (qui ne doit pas pouvoir être supprimé),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Consultation du document : Modes d'affichage : mode page / mode lecture,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Consultation du document : Inverser ouvrir et fermer dans le menu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Consultation Document : Picto agrandir/réduire adapté au contexte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Charte graphique: Bouton fermer de l'aperçu pour ouvrir un autre document : mettre la croix à droite de la pop-up comme ailleurs sur le site,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Spinner d'adaptatation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Consultation Document : Pagination en mode dégradé,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Texte de démonstration,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier  les valeurs d'un style ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier  le nom d'un profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Fermer l'écran ""Liste des styles""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Consultation des styles d'un profil.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Retirer profil par défaut en tant qu'administrateur.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+déléguer un profil uniquement au utilisateur cned-adapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+partage de profil aux personnes sans compte CnedAdapt ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Pré-remplissage des champs pour la création de profil.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 3582 : Sprint C5 : améliorer le process de création de profil 1/2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"6.	Donner la possibilité d'agrandir l'interface de consultation de document (en masquant le bandeau) à partir du menu de navigation. Par défaut, c'est le bandeau est affiché.",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"5.	Ajouter bouton ""Ouvrir"" à partir du menu Navigation. Un popup s'ouvre affichant la liste des documents (titre, date de dernière modification) Lorsque je clique sur un document, celui-ci s'ouvre. ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"4.	Ajouter la possibilité de fermer le document à partir du menu navigation. A la fermeture du document, on revient à la liste des documents.",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+3.Ajouter le numéro de page de chaque titre du sommaire ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"2.	Supprimer  la pagination « Suivant »,  « Précédant »,  « Premier »  et  « Dernier »  du  menu  de navigation et ajouter la pagination et les flèches de navigation en bas du document avec possibilité d'accéder facilement à une page par numéro (champs de",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1.	Donner la possibilité à l'utilisateur de passer de la vue en mode consultation à la vue en mode impression (Par défaut : c'est la vue impression). ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 2414 : Sprint C5 : Amélioration de la consultation du document adapté ½,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Non reproductible,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partager un document via Email : Accès pour le destinataire,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès un document partagé sans connexion à cnedadapt ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Le nom du profil ne doit pas exister,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Déconnexion en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Connexion en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès aux mentions légales en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage du profil en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible d'éditer un style avec IE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+L'image des boutons 'Supprimer' et 'Ajouter le style' ne s'affichent pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Import de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Consultation de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+PARTAGER PROFIL_Pas de redirection sur le profil après connexion,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+PARTAGER PROFIL_Dysfonctionnement sur le partage Google+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ADMINISTRATION_La recherche sensible à la casse,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ADMINISTRATION_Impossible de supprimer un utilisateur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+BOOKMARKLET_Impossible de charger un PDF,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+BOOKMARKLET_Impossible d'afficher les images,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+BOOKMARKLET_Erreur technique en cliquant sur un lien,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+BOOKMARKLET_Impossible de charger une page avec IE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SYNTHESE VOCALE_Lecture des parenthèses et crochets.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partager document : Expéditeur Facebook incohérent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Problème d'encodage sur l'ouverture d'une page PHP,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Découper et faire une reconnaissance de texte sur une image - JPEG,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Découper et faire une reconnaissance de texte sur une image - PNG,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Découper et faire une reconnaissance de texte sur une image - PDF/PNG/JPEG,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+L'adaptation du document rend les fonctionnalités inutilisables,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Caractère spéciaux acceptés dans nom/prénom,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Expéditeur Facebook incohérent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier un profil délégué après l'annulation de la délégation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Afficher un profil déléguer lorsqu'on est déconnecté de l'application,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage d'un bouton « Favoris » à tort,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Déformation du formulaire lorsqu'on passe par le détail pour les modifications,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Changement de couleur d'un mot sans retour à la ligne,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Enregistrer un profil sans compléter les champs obligatoires,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création d'un profil : Déformation du formulaire lors de l'utilisation de la tabulation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création d'un profil : L'aperçu comporte 3 lignes par défaut.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document adapté /Editeur de textes : Les mots à double consonnes sont mal coupés,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modifier le message sur la délégation de profil en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Problème d'adaptation temps réel sur le changement de profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Style dans la combo en mode déconnecté (éditeur de texte),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Pour quitter l'application veuillez fermer votre navigateur.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Récupérer le nom du document et non le nom du fichier dans CnedAdapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Message de synchronisation à revoir,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ajouter le message d'adaptation en cours dans l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de texte : Barre de menu n'est pas visible pour un grand document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partage de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+L'import de document s'effectue même en cliquant sur annulé.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Déconnexion en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Suppression de compte et mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès au menu Ma bookmarklet en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès aux mentions légales en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès à mon compte en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synchronisation des profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synchronisation des documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Délégation de profil en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partage de profil en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Import de lien en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Navigation adaptée en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impossible de supprimer un compte utilisateur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mise en place du mécanisme de synchronisation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+A estimer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale : Ajout d'un message d'aide,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Etude - Océrisation entièrement côté client,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Frigo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Maintenance Corrective,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Améliorations,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Documentation de la compilation Tesseract par Emscripten,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mise à jour des sources pour indiquer la licence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès à l'application en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage du profil en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Suppression de profil en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification de profil en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création de profil en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Import de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Consultation de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Renommage de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Suppression de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création de document en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Documentation How to compile Tesseract with Emscripten,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+3109 - Mentions juridiques obligatoires pour la licence open source choisie,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Expiration de délai de connexion,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 2992 - Mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"""Chargement de vos documents en cours""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+document lié qui ne s'adapte pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+styles vides dans le profil par défaut,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+perte de connexion en cours d'enregistrement,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bookmarklet : Pas d'accès au document en cas de non authentification,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ordre des styles dans l'aperçu des profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+style nommés règles ou format,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+collage de mots à la ligne,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil : hauteurs interlignes non proportionnelles aux hauteurs de ligne,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Éditeur de textes : Ajout fonction Agrandir/Réduire,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale : Message explicatif,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+jonction de 2 paragraphes dans l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coloration de ligne sur un texte océrisé:  l’aperçu ne colorie pas ligne par ligne alors qu’en mode affichage ça fonctionne,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR de l'image entière,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+modification du profil : l’espace de prévisualisation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Pas de message après expiration de session,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+L'interface de Cned-Adapt n'est pas adaptée à la résolution de l'écran ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Éditeur de textes : pas de barre d'outils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Liste des documents: le bouton ""Modifier""  ne fonctionne pas",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+retour à la liste des profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+bug d'utilisabilité découpe de blocs plus hauts que l'écran,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+bug d'OCR 2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+bug OCR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"adaptation de pages web pas aussi performante que le ""mode lecture"" de firefox ou de chrome",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+cned.fr non adapté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+reddit mal adapté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CNN page mal importée,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"bug publicités pour vérification d'orthographe, scripts et API indument chargés",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Affichage document adapté : lien ancien, pas de mise à jour ni d'accès à ma liste de documents",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage document adapté : lien vers un ancien document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage document adapté :casse des URL,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil : aperçu du style Paragraphe dans les détails du profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ouverture dans un nouvel onglet,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+mauvais découpage syllabique,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : changement de style d'un paragraphe à puce,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+blocage du navigateur sur édition 2 fois d'un document adapté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes: mauvais comportement du bouton Fermer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Mauvaise océrisation des lettres comme à â, ..et les virgules",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mauvaise océrisation : les lettres p et q ne sont pas reconnus quand la phrase est soulignée  ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR : Pas de saut de paragraphes de textes,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de texte : L'adaptation en couleur n'est pas opérationnelle,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+annotation : Manque l'infobulle de supression,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+annotation : agrandissement du contenu de l'annotation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+mauvaise position de l'annotation quand je change le profil actuel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Annotation : Impossible d'enlever ""Note"" avec la souris ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Annotation : Scroll de l'annoation ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Affichage document adapté : mauvaise infobulle ""Plan/Sommaire""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale : arrêt de la lecture,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage document adapté : Le chagement de profil actuel bloque l'affichage du document adapté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Affichage document adapté : message ""Le document n'a pas pu être chargé.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage document adapté : ouverture dans un nouvel onglet,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Style des listes à puces,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : outil de sélection/découpage image,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Espace de connexion : mot oublié ==>Message non approprié,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bouton menu dans espace de connexion,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Nouveau compte : association à un compte DropBox,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+popup d'incompatibilité de la synthèse vocale,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : partage via email,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : prise en compte de la délégation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : délégation = nouveau propriétaire ?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : bug des formulaires sous IE11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : même nom pour deux profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : bug champs obligatoires et message de succès inadapté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Problèmes d'affichage sous IE11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Partage de documents : impossible via google+, email + facebook (IE11)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impression d'un document adapté : le pointeur de l'annotation cache le texte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+La coloration sur une bloc ne contenant qu'un mot ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale de texte long,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale en mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale non supportée,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Synthèse vocale désactivée,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Choix d'un autre texte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Déclenchement synthèse vocale,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Implémentation de synthèse vocale Web,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Navigation web adapté : les liens ne sont visibles en cas de profil avec coloration,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Navigation web adapté : pas de message en cas de traitement long,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partage de document / profil : le contenu du message n’est pas top.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partage de document/profil : le mail est envoyé depuis une adresse mail qui  n’existe pas ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document adapté : mauvaise adaptation d'un document pdf avec profil (surligner les lignes RBV),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : pas de chargement d'un document epub,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Impossible d’ouvrir un document de type lien url,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document adapté : la position de l'annotation n'est pas correcte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document adapté : L'édition Annotation ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Navigation web adapté : impossible de revenir à la page ""père""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Navigation web adapté : message ""Le document n'a pas pu être chargé.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bookmarklet : Document adapté non affiché,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document adapté : Mauvaise adaptation de sous titre 1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : Ligne blanche dans profil actuel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : Impossible de faire la maj d'un style,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Liste des documents : pas de maj de la dernière date de modification,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Femer sans affichage de popup en cas de non modification,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes (pdf) : perte des styles après enregistrement,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR : mauvaise reconnaissance de texte souligné,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Enregistrer sans affichage de popup,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aperçu de texte adapté : les éléments de sommaire ne sont pas adaptés correctement,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Lors de la découpe, un scroll automatique devrait être fait lorsqu'on atteint le bas (partie invisible)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Pourcentage d'avancement lors de l'import d'un PDF,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage du profil avec un nom long,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document adapté : Affichage du mauvais document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document adapté : Règles de document sans sommaire,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Document adapté : Sommaire sans libellés (titre 1, titre 2, ..)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Chrome indique que le site Web https://adapt.cned.fr/ dispose d’une sécurité faible,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Impression,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partage de document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 2705 : HTML/JS,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Développement des écrans dans les fichiers HTML,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion enregistrement document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Fonds des messages chargement,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tri des dossiers / documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Messages,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Titre de la page,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Suppression d'un document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification du nom du document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Suppression d'un dossier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification du nom du dossier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Edition d'un document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Consultation d'un document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage de l'arborescence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création de dossier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Affichage du type d'élément,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès au contenu d'un dossier par clic sur le nom du dossier,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès à la consultation du document par clic sur le nom titre du document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sélection des fichiers pour action,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Les actions sont disponibles en haut de l'écran et non plus dans la colonne action,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Amélioration de la liste des documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Éditeur de textes :  Enregistrer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Éditeur de textes : l'affectation d'un style à un texte océrisé ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sommaire : Ajouter une marge top d'une valeur fixe et suffisante,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion des profils : allouer le maximum de taille à l'aperçu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur : sélection d'un paragraphe à cheval ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Traitement de reconnaissances de caractères est trop long,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Le bouton annuler ne fonctionne qu'une seule fois,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Message si océrisation n'est pas activé,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Document adapté : Accès à la 1ère page,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aperçu document adapté : Ligne vide,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Déconnexion parfois inactive,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Accès à mes documents en mode déconnecté ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Enregistrement du profil en mode déconnecté ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Désactiver le menu dans certains cas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil : Impossible de supprimer un style dans le cas de duplication de profil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Délégation de profil :Message innapproprié,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : Création de 2 ou plusieurs profils avec le même nom,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partage de documents/profils via Email,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aperçu document adapt : le lien ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aperçu : Les règles non std html avec coloration ne fonctionnent pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Dans l'éditeur de texte : Infobulle ""Éditeur de texte enrichi""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aperçu : Coloration par syllabe ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Aperçu ""colorer les mots""  ne fonctionne pas",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aperçu du profil ne fonctionne pas pour les règles non std HTML ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aperçu de texte adapté : les éléments de sommaire ne sont pas adaptés,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Coloration de lignes ne fonctionne pas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR : Gestion des fins de ligne,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR : Gestion des paragraphes,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR : Gestion des tirets,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR : Gestion des guilllemets,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR : gestion de l'apostrpohe,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCR : gestion du à,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Liste des documents : bouton action bloqué (titre du document avec plusieurs espaces),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Espace de connexion : lenteur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeurs de textes : outil de découpage activé en abs. d'image,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mode déconnecté,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Profil actuel vide,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Profil actuel vide,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil : message bloqué et adaptation non effectuée,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : règle de coloration,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : police dys,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil : Police dys,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil actuel : Affichage vide,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : image sélectionnée,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes :  possibilité d'interrompre l'océrisation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : message d'océrisation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : animation lors du découpage de l'image,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : ligne vide entre le bloc découpé et l'image,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : emplacement de l'image initial,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : image et curseur de la souris,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création de compte sous Mac : Blocage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profils : Coloration par défaut ==> Pas de coloration,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Adaptation Noir/couleur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Copier/coller depuis Libre Office,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Ajout information,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Editeur de textes : Titre du document - gestion des caractères spéciaux,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Message : Chargement à la place de récupération,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Profil : Gestion des interlignes (x2,x3 ... x10)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Profil : Taille de la police identique à celle de Word,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sommaire de l'aperçu : uniquement les titres,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Partage de documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Les liens ne sont plus cliquables sur l'aperçu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Les titres 1 adaptés s'affichent en majuscules,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Les messages d'information lors de la fermeture d'un document en cours d'édition ne sont pas conformes,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+L'impression ne fonctionne plus dans l'aperçu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Les annotations ne sont plus utilisables dans l'aperçu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Le menu ne s'affiche pas sur un document s'il comporte un titre avec un espace,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Le style des listes et des tableaux est incorrect,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bookmarlket : erreur lors du traitement de Wikipedia Tennis,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Découpage image : mauvaise sélection après découpage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Manque d'un spinner lors de l'édition d'un document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Freeze de l'application après plusieurs OCRisation dans l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCRisation : spinner pas très esthétique,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Scroll éditeur : il se fait sur la page au lieu de l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MISSING sur certains écrans`,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+US 2416 - Enchainement d'océrisation KO,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+problème de perte du texte océrisé dû au changement de la version du CKeditor,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Développement du plugin d'océrisation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Développement de la gestion dédiée au multi-page dans le cas de l'epub,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mise en place de la navigation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCRisation aun sein de l'éditeur - TI,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Intégration du mécanisme d'adaptation - TI,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion du multi-page pour fichier E-Pub - TI,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion du multi-page documentaire - TI,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Navigation Web - TI,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion de la navigation Web,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion de la navigation Web dans les documents adaptés,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Désactivation de la restructuration,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+OCRisation d'une image au sein de l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création du plugin CKEditor de découpe ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification des imports PDF et images,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Découpage de l'image au sein de l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Adaptation dans l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mise à jour de la bookmarklet,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification de l'enregistrement des documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Intégration du mécanisme d'adaptation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Restructuration des documents par édition,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification de l'adaptation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion du cache pour les profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion des profils,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Refonte du mécanisme d'adaptation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion dédiée au multi-page dans le cas de l'epub,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Modification de l'aperçu pour la détection et la prise en compte des sauts de page,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ajout du bouton saut de page dans l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion du multi-page documentaire,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion des fichiers PDF et Image au sein du nouvel éditeur de texte,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Retirer de l'éditeur les boutons relatifs aux fonctions supprimées,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Edition du guide utilisateur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Rework suite intégration Prod,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Préparation démo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion des messages d'erreur (pop-up),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion des messages d'erreur Word / LibreOffice,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion du changement de profil pour l'aperçu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Suppression des boutons d'alignement dans l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Exécution des tests du module OCR dans CNED Adapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Documentation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Exécution des tests d'intégration,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Rework US 2183 - Editeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tests Chrome,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tests FireFox,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tests IE11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tests sur IE10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Injection du contenu d'un fichier epub,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Injection du contenu d'un fichier HTML,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gestion du bouton Fermer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Plugin aperçu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Binding styles profil dans éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création plugin bandes G/D,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création du plugin Enregistrer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création du plugin OUvrir,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Paramétrage de l'éditeur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Intégration de ckeditor,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création du nouveau écran,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création de la page Nouveau Document,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Etude d'impact, maquettage et rédaction des spécifications",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Exécution des tests du module OCR dans CNED Adapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Intégration du module OCR dans CNED Adapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Etude d'impact d'intégration du module d'OCR dans CNED Adapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Exécution des tests du module d'OCR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Définition des tests à exécuter sur le module OCR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Création d'un schéma d'architecture du module d'OCR ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Montée en compétence GBA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Installation et rédaction du guide d'installation de CNED Adapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mise à niveau guide utilisateur de CNED Adapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mise en place d'un éditeur de texte pour la création de documents,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Intégration du module OCR JS dans l'application CNED Adapt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Etape 1 : migration de Tesseract en JS,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

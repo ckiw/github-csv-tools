@@ -19,10 +19,12 @@
   "author": "Gavin Rehkemper <gavin@gavinr.com> (http://gavinr.com/)",
   "license": "MIT",
   "dependencies": {
+    "async": "^2.1.2",
     "co": "^4.6.0",
     "co-prompt": "^1.0.0",
     "commander": "^2.9.0",
     "csv": "^0.4.6",
-    "github": "^0.2.4"
+    "github": "^0.2.4",
+    "xml-parser": "^1.2.1"
   }
 }
