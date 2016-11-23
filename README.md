@@ -1,23 +1,22 @@
 # github-csv-tools
-Tools for importing GitHub Issues via CSV. (Exporting to come soon?)
+Tools for importing GitHub Issues via CSV.
 
 Currently imports title, description, and labels.
 
+Publish in the sake of sharing but you should use xml export in jira or use the apis
+This is a fork of https://github.com/gavinr/github-csv-tools
+
+**Be careful it's impossible to delete github issues**
+
+there is example file JIRA.csv in `/test`
+
 ## Usage
 
- 1. `npm install -g github-csv-tools`
- 2. `githubCsvTools myFile.csv` 
-
-`githubCsvTools --help` for info on how to use the command line tool
-
-## Development
-
-1. Clone the repo.
-2. Browse to repo, then run `npm install -g`
-
-## Changelog
-
-See [CHANGELOG.md](https://github.com/gavinr/github-csv-tools/blob/master/CHANGELOG.md)
+ 1. `git clone this repo`
+ 2. `cd into it`
+ 3. `npm install`
+ 4. `chmod +x index.js`
+ 5. `./index.js myFile.csv`
 
 ## Thanks
 
