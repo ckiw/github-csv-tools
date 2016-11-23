@@ -15,9 +15,9 @@ program
     .action(function(file) {
         co(function*() {
             var retObject = {};
-            retObject.token = "deb464ed4c15f271ae1ef7bc11912ca455d69c47";//yield prompt('token (get from https://github.com/settings/tokens): ');
-            retObject.userOrOrganization = "AccessiDys";//yield prompt('user or organization: ');
-            retObject.repo = "AccessiDys";//yield prompt('repo: ');
+            retObject.token = yield prompt('token (get from https://github.com/settings/tokens): ');
+            retObject.userOrOrganization = yield prompt('user or organization: ');
+            retObject.repo = yield prompt('repo: ');
             return retObject;
         }).then(function(values) {
             var github = new GitHubApi({
